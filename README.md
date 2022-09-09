@@ -1,5 +1,38 @@
 # volt-securetokens
-Simple demo to show how Volt can be used to provide secure, unguessable tokens, each with a finite number of uses and an expiry date
+
+## Simple demo to show how Volt can be used to provide secure, unguessable tokens, each with a finite number of uses and an expiry date
+
+Recently we were talking with a financial services organisation that has a requirement for unique identifiers.
+
+We suggested they use the [getUniqueId](https://docs.voltdb.com/javadoc/server-api/org/voltdb/VoltProcedure.html#getUniqueId) method in VoltProcedure, but they need something which is not just unique, but not possible to guess. While [getUniqueId](https://docs.voltdb.com/javadoc/server-api/org/voltdb/VoltProcedure.html#getUniqueId) is functionally unique, it's at least theoretically possible to guess it.
+
+This example therefore shows how to create a unique token manager in Volt:
+
+## Characteristics
+### Can’t send same request twice
+
+Each request has a 'transaction ID'. This can only be used once, and must follow a naming convention. So if you try and create an 'extra' token by replaying a request you can.t
+
+###  Tokens are per user and can be used ‘x’ times
+
+Each token is given a number of possible usages when created. This number is normally low, but could be very high. This code could, for example, be used to allocate exactly 50,000 tickets to a concert in under 2 seconds, as requests to UseToken will be gracefully queued.
+
+### Repeated errors for a user lock their tokens out
+
+If a user starts to get more errors than successful calls they lose their ability to use tokens.
+
+### Non-predictable token sequence.
+
+When we create a token we start by creating a random string, and then we encrypt it.
+
+### Extra features
+
+* All errors are logged to a topic, when can then be directed to Kafka.
+* Any deterministic Java encryption algorithm can be used to create tokens.
+* Track the number of token usages and the number of errors per user.
+
+## Usage Example 
+--
 
 ```
 DavidsMacBookPro5:EclipseWorkspace drolfe$ cd volt-securetokens/
