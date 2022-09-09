@@ -127,7 +127,7 @@ public class CreateToken extends VoltProcedure {
         StringBuffer b = new StringBuffer(data);
 
         // How you *actually* encrypt this is up to you - any deterministic Java
-        // mechanism will wok...
+        // mechanism will work...
         return b.reverse().toString();
     }
 
