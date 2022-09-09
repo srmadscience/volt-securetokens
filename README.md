@@ -11,7 +11,7 @@ This example therefore shows how to create a unique token manager in Volt. The p
 ## Characteristics
 ### Can’t send same request twice
 
-Each request has a 'transaction ID'. This can only be used once, and must follow a naming convention. So if you try and create an 'extra' token by replaying a request you can.t
+Each request has a 'transaction ID'. This can only be used once, and must follow a naming convention. So if you try and create an 'extra' token by replaying a request you can't
 
 ###  Tokens are per user and can be used ‘x’ times
 
@@ -29,7 +29,7 @@ When we create a token we start by creating a random string, and then we encrypt
 
 * All errors are logged to a topic, when can then be directed to Kafka.
 * Any deterministic Java encryption algorithm can be used to create tokens.
-* Track the number of token usages and the number of errors per user.
+* We track the number of token usages and the number of errors per user.
 
 ## Usage Example 
 --
