@@ -6,7 +6,7 @@ Recently we were talking with a financial services organisation that has a requi
 
 We suggested they use the [getUniqueId](https://docs.voltdb.com/javadoc/server-api/org/voltdb/VoltProcedure.html#getUniqueId) method in VoltProcedure, but they need something which is not just unique, but not possible to guess. While [getUniqueId](https://docs.voltdb.com/javadoc/server-api/org/voltdb/VoltProcedure.html#getUniqueId) is functionally unique, it's at least theoretically possible to guess it.
 
-This example therefore shows how to create a unique token manager in Volt. The peformance is such that you could also use it to allocate a fixed number of something very quickly, e.g. concert tickets...
+This example therefore shows how to create a unique token manager in Volt. The performance is such that you could also use it to allocate a fixed number of something very quickly, e.g. concert tickets...
 
 ## Characteristics
 ### Can’t send same request twice
